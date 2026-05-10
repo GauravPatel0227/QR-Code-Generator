@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="theme-switcher">
+            <span>Dark Mode</span>
+            <button id="dark-mode-toggle" class="toggle-btn" aria-label="Toggle dark mode">🌙</button>
+        </div>
+        <section class="hero-card">
+            <div class="hero-header">
+                <div>
+                    <h1>QR Code Generator</h1>
+                    <p>Create, customize and download QR codes instantly.</p>
+                </div>
+            </div>
+
+            <div class="control-card">
+                <div class="input-tabs">
+                    <button class="tab-btn active" data-tab="text-tab">Text/URL</button>
+                    <button class="tab-btn" data-tab="pdf-tab">PDF File</button>
+                </div>
+
+                <div id="text-tab" class="tab-content active">
+                    <label for="qr-input" class="input-label">Enter text, URL, phone number, or any data</label>
+                    <textarea id="qr-input" rows="4" placeholder="Type your text or link here..."></textarea>
+                </div>
+
+                <div id="pdf-tab" class="tab-content">
+                    <label for="pdf-input" class="input-label">Upload a PDF file</label>
+                    <input type="file" id="pdf-input" accept=".pdf" class="file-input">
+                    <div id="pdf-info" class="pdf-info"></div>
+                </div>
+
+                <div class="options-row">
+                    <div class="option-group">
+                        <label for="color-picker">QR Color</label>
+                        <input type="color" id="color-picker" value="#2a2cff">
+                    </div>
+                    <div class="option-group">
+                        <label for="bg-color-picker">Background</label>
+                        <input type="color" id="bg-color-picker" value="#ffffff">
+                    </div>
+                </div>
+
+                <div class="buttons-row">
+                    <button id="generate-btn" class="btn btn-primary">Generate QR Code</button>
+                    <button id="clear-btn" class="btn btn-secondary">Clear</button>
+                </div>
+
+                <div class="buttons-row small-gap">
+                    <button id="copy-btn" class="btn btn-light">Copy Text</button>
+                    <button id="download-btn" class="btn btn-primary" disabled>Download QR Code</button>
+                    <button id="download-pdf-btn" class="btn btn-light" disabled>Download PDF</button>
+                </div>
+
+                <div id="alert-box" class="alert-box" aria-live="polite"></div>
+                <div id="loading-holder" class="loading-holder">
+                    <div class="spinner"></div>
+                    <span>Generating QR code...</span>
+                </div>
+            </div>
+
+            <div class="result-card">
+                <h2>Preview</h2>
+                <div id="qrcode" class="qrcode-box"></div>
+                <p class="hint-text">QR code size is 220x220 pixels and fully downloadable.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        if (typeof QRCode === 'undefined') {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js';
+            document.head.appendChild(script);
+        }
+    </script>
+    <script src="script.js" defer></script>
+</body>
+</html>
